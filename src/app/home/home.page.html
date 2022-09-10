@@ -1,20 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-navbar></app-navbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="container">
+    <div class="p-5 my-4 bg-light border rounded-3">
+      <h1>Exercice USTS</h1>
+      <p className="lead">Le but de cet exercice est de développer une application Android / iOS permettant aux utilisateurs de se voir en temps réel sur une carte via la géolocalisation du device.
+      </p>
+      <p>
+        Il vous faudra pour cela développer une API permettant d'accueillir les données des utilisateurs afin de les synchroniser entre tous les clients et de développer l'application associée qui permettra l'envoi et la réception de ces données de géolocalisation..
+      </p>
+      <hr />
+    </div>
   </div>
 </ion-content>
