@@ -11,6 +11,9 @@
               <img src="./assets/images/add-member-icon.png" alt="user register image">
             </div>
             <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+              <div class="response-error mt-2 text-center">
+                <p class="text-danger my-error">{{responseError}}</p>
+              </div>
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="email">Email</label>

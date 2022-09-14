@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { ICredential } from '../../interfaces/credential';
 import { AuthService } from '../../services/auth.service';
 
@@ -15,9 +16,11 @@ export class LoginPage implements OnInit {
     "password": ""
   };
 
+  responseError: string;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
@@ -25,15 +28,24 @@ export class LoginPage implements OnInit {
 
   onSubmit = () => {
     console.log(this.credentials);
-    this.authService.login(this.credentials).subscribe( (ObjectToken:any) => {
-      if (ObjectToken) {
-        this.authService.setToken(ObjectToken.token).then( (token: string)=>{
-          if(token) {
-            this.router.navigate(['/informations']);
-          }            
-        })   
-      }
-    })
+    this.authService.login(this.credentials)
+      .subscribe({
+        next:(ObjectToken:any) => {
+          if (ObjectToken) {
+            this.responseError = '';
+            this.authService.setToken(ObjectToken.token).then( (token: string)=>{
+              if(token) {
+                this.router.navigate(['/informations']);
+              }            
+            })   
+          }
+        },
+        error: (e) => {
+          if (e.error.code) {
+            this.responseError = 'Identifiants incorrects';
+          }
+        }
+      })
   }
   
 }
