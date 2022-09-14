@@ -1,0 +1,48 @@
+<ion-content [fullscreen]="true">
+  <app-navbar></app-navbar>
+  <div class="container py-2 my-container">
+    <div>
+      <h1 class="display-5 text-center my-3">Inscription</h1>
+      <div class="row">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 mx-auto">
+          <div class="bg-white shadow rounded p-5">
+            <!-- <h2 class="fs-3 text-center fw-light mb-4">Inscrivez-vous ici !</h2> -->
+            <div class="register_img">
+              <img src="./assets/images/add-member-icon.png" alt="user register image">
+            </div>
+            <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" class="form-control form-control"
+                  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
+                  [ngClass]=" !(email.valid || email.pristine) ? 'is-invalid' : ''" name="email"
+                  [(ngModel)]="user.email" #email="ngModel" />
+                <p class="invalid-feedback">
+                  Ce mail est invalide.
+                </p>
+              </div>
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Mot de passe</label>
+                <input type="password" id="password" class="form-control form-control" required minlength="3"
+                  [ngClass]="!(password.valid || password.pristine) ? 'is-invalid' : ''" name="password"
+                  [(ngModel)]="user.password" #password="ngModel" />
+                <p class="invalid-feedback">
+                  Le mot de passe est requis et doit avoir au minimum 3 caractères
+                </p>
+              </div>
+
+              <!-- Submit button -->
+              <div class="d-flex">
+                <button type="submit" [disabled]="!loginForm.form.valid" class="btn btn-primary mx-auto">Je
+                  m'inscris</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

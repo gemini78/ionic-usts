@@ -1,0 +1,13 @@
+.register_img {
+    text-align: center;
+    img {
+        width: 20%;
+    }
+}
+
+.my-container {
+    min-height: calc(100% - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
