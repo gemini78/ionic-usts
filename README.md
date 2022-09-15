@@ -3,7 +3,7 @@
 
 ## Get and install the application
 
-- git clone ...
+- git clone git@github.com:gemini78/ionic-usts.git
 - move to the folder
 - npm install
 
