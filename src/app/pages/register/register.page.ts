@@ -14,7 +14,7 @@ export class RegisterPage implements OnInit {
     "password": ""
   };
 
-  responseError: string;
+  errorsMsg: string[] = [];
 
   constructor(
     private authService: AuthService,
@@ -28,18 +28,16 @@ export class RegisterPage implements OnInit {
     console.log(this.user);
     this.authService.register(this.user).subscribe({
       next: (response) => {
-        this.responseError = '';
+        this.errorsMsg = [];
         if(response) {
           this.router.navigate(['/login']);
         }
       },
       error: (e) => {
-        //console.log('ERROR',e.error.violations);
-        if (e.error.violations) {
-          this.responseError = '';
-          e.error.violations.map( (error: any) => {
-            this.responseError += error.message;
-          })
+        if (e.error.violations.length) {
+          e.error.violations.forEach(element => {
+            this.errorsMsg.push(element.message);
+          });
         }
       }
     })

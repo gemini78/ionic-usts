@@ -12,7 +12,7 @@
             </div>
             <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
               <div class="response-error mt-2 text-center">
-                <p class="text-danger my-error">{{responseError}}</p>
+                <p *ngFor="let errorMsg of errorsMsg" class="text-danger my-error">{{errorMsg}}</p>
               </div>
               <!-- Email input -->
               <div class="form-outline mb-4">
