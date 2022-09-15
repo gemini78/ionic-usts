@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ViewWillEnter } from '@ionic/angular';
+import { ToastController, ViewWillEnter } from '@ionic/angular';
 import { Map, tileLayer, marker, icon, control } from 'leaflet';
 import { InfosService } from '../../services/infos.service';
 import jwt_decode from 'jwt-decode';
@@ -11,6 +11,7 @@ const myIcon = icon({
   iconUrl: './assets/images/icon-red.png',
   iconSize: [40, 40]
 });
+
 
 @Component({
   selector: 'app-informations',
@@ -26,6 +27,7 @@ export class InformationsPage implements OnInit, ViewWillEnter, OnDestroy {
   marker: any;
   markerArray: any[] = [];
   isConnected: boolean = false;
+  userName: string = '';
 
   constructor(
     private service: InfosService,

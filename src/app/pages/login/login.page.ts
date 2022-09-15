@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ICredential } from '../../interfaces/credential';
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class LoginPage implements OnInit {
             this.authService.setToken(ObjectToken.token).then( (token: string)=>{
               if(token) {
                 this.router.navigate(['/informations']);
+                this.presentToast('bottom');
               }            
             })   
           }
@@ -46,6 +48,18 @@ export class LoginPage implements OnInit {
           }
         }
       })
+  }
+
+  async presentToast(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: `Welcome ${this.credentials.username}`,
+      duration: 2000,
+      position: position,
+      color: 'success',
+      cssClass: 'my-toast'
+    });
+
+    await toast.present();
   }
   
 }

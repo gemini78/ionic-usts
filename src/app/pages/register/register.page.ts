@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { IUser } from '../../interfaces/user';
 import { AuthService } from '../../services/auth.service';
 
@@ -9,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+
   user: IUser = {
     "email": "",
     "password": ""
@@ -18,7 +20,8 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
     ) { }
 
   ngOnInit() {
@@ -30,6 +33,7 @@ export class RegisterPage implements OnInit {
       next: (response) => {
         this.errorsMsg = [];
         if(response) {
+          this.presentToast('bottom');
           this.router.navigate(['/login']);
         }
       },
@@ -41,6 +45,18 @@ export class RegisterPage implements OnInit {
         }
       }
     })
+  }
+
+  async presentToast(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: `Création du compte effectuée, vous pouvez maintenant vous connecter`,
+      duration: 5000,
+      position: position,
+      color: 'success',
+      cssClass: 'my-toast'
+    });
+
+    await toast.present();
   }
 
 }
