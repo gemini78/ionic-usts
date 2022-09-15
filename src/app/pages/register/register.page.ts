@@ -28,7 +28,7 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit = () => {
-    console.log(this.user);
+    //console.log(this.user);
     this.authService.register(this.user).subscribe({
       next: (response) => {
         this.errorsMsg = [];

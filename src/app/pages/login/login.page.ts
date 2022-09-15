@@ -28,7 +28,6 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit = () => {
-    console.log(this.credentials);
     this.authService.login(this.credentials)
       .subscribe({
         next:(ObjectToken:any) => {

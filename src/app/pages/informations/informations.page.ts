@@ -108,7 +108,7 @@ export class InformationsPage implements OnInit, ViewWillEnter, OnDestroy {
   getPosition = (position) => {    
     const lat = position.coords.latitude
     const long = position.coords.longitude
-    console.log(`My position => lat: ${lat} long: ${long}`);    
+   // console.log(`My position => lat: ${lat} long: ${long}`);    
 
     if(this.map) {
       if(this.marker) {
@@ -140,7 +140,7 @@ export class InformationsPage implements OnInit, ViewWillEnter, OnDestroy {
     this.service.getUsers().subscribe( (response) => {
       const allUsers = response['hydra:member'];
       this.users = allUsers.filter(user => user.deviceId !== this.uuid);
-      console.log('this.users',this.users);
+    //  console.log('this.users',this.users);
       
       if(this.users !== undefined && this.users.length > 0) {
         this.users.map( (user: any) => {
@@ -170,7 +170,7 @@ export class InformationsPage implements OnInit, ViewWillEnter, OnDestroy {
             deviceId: this.uuid
           }
           this.service.updateUser(id, userUpdate).subscribe( (userUp) => {
-            console.log('update', userUp);
+          //  console.log('update', userUp);
             
           })
         }
